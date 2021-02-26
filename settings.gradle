@@ -1,0 +1,5 @@
+include ':ring'
+include ':oa'
+include ':comm'
+include ':app'
+rootProject.name = "MvRxDemo"
