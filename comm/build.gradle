@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -47,11 +48,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.github.lianxin0528:MvRxBase:0.1.0'
-
+    api 'com.github.lianxin0528:MvRxBase:0.1.0'
     // lottieAnimationView
     api 'com.airbnb.android:lottie:3.4.4'
     // SmartRefreshLayout
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
-
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
+    kapt 'com.airbnb.android:epoxy-processor:3.8.0'
 }

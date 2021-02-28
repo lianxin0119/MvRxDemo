@@ -1,11 +1,14 @@
 package space.lianxin.comm.ui.activity
 
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyVisibilityTracker
 import space.lianxin.base.extention.click
+import space.lianxin.base.extention.setStatusBarBlackText
+import space.lianxin.base.extention.setStatusColor
 import space.lianxin.comm.databinding.ActivityTitleListBinding
 
 /**
@@ -22,6 +25,8 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
 
     @CallSuper
     override fun initView() {
+        setStatusColor(Color.TRANSPARENT)
+        setStatusBarBlackText()
         initHeader()
         initTitleBar(
             binding.titleBar.titleTv,
