@@ -3,6 +3,7 @@ package space.lianxin.comm.ui.activity
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.CallSuper
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyVisibilityTracker
 import space.lianxin.base.extention.click
 import space.lianxin.comm.databinding.ActivityTitleListBinding
@@ -28,10 +29,8 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
             binding.titleBar.rightIv,
             binding.titleBar.backIv
         )
+        initRecyclerView(binding.recyclerView)
         binding.recyclerView.setController(epoxyController)
-        if (needAttchToItemScroll()) {
-            attachToItemScroll()
-        }
     }
 
     override fun initData() {}
@@ -45,8 +44,8 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
     ) {
     }
 
-    /** 是否需要关联到item的滑动(可以监听item滑动的距离和百分比等。) */
-    protected open fun needAttchToItemScroll(): Boolean = false
+    /** 初始化列表相关信息 */
+    protected open fun initRecyclerView(recyclerView: RecyclerView) {}
 
     /** 设置头部返回键按钮点击事件 */
     fun setHeaderBackClick(event: () -> Unit) {
@@ -55,14 +54,13 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
 
     /** 初始化头部信息 */
     private fun initHeader() {
-        setHeaderBackClick {
-            finish()
-        }
+        setHeaderBackClick { finish() }
         binding.refreshLayout.setEnableRefresh(true)
         binding.refreshLayout.setEnableLoadMore(false)
     }
 
-    private fun attachToItemScroll() {
+    /** 关联到item的滑动(可以监听item滑动的距离和百分比等。) */
+    protected fun attachToItemScroll() {
         EpoxyVisibilityTracker().attach(binding.recyclerView)
     }
 
