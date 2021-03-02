@@ -6,27 +6,27 @@ import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyVisibilityTracker
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import space.lianxin.base.extention.click
-import space.lianxin.base.extention.setStatusBarBlackText
 import space.lianxin.base.extention.setStatusColor
-import space.lianxin.comm.databinding.ActivityTitleListBinding
+import space.lianxin.comm.databinding.CommActivityTitleListBinding
 
 /**
  * ===========================================
- * 标题列表结构的Activity的基类。
+ * 标题列表结构的Activity的基类。当不需要使用标题结构时可以直接调用titleBar
+ * 的[setVisible]方法。
  *
  * @author: lianxin
  * @date: 2021/2/25 14:00
  * ===========================================
  */
-abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
+abstract class TitleListActivity : ComMvRxAvtivity<CommActivityTitleListBinding>() {
 
-    override fun inflateBinding() = ActivityTitleListBinding.inflate(layoutInflater)
+    override fun inflateBinding() = CommActivityTitleListBinding.inflate(layoutInflater)
 
     @CallSuper
     override fun initView() {
         setStatusColor(Color.TRANSPARENT)
-        setStatusBarBlackText()
         initHeader()
         initTitleBar(
             binding.titleBar.titleTv,
@@ -34,7 +34,7 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
             binding.titleBar.rightIv,
             binding.titleBar.backIv
         )
-        initRecyclerView(binding.recyclerView)
+        initRecyclerView(binding.refreshLayout, binding.recyclerView)
         binding.recyclerView.setController(epoxyController)
     }
 
@@ -49,8 +49,12 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
     ) {
     }
 
-    /** 初始化列表相关信息 */
-    protected open fun initRecyclerView(recyclerView: RecyclerView) {}
+    /** 初始化刷新和列表view相关 */
+    protected open fun initRecyclerView(
+        refreshView: SmartRefreshLayout,
+        recyclerView: RecyclerView
+    ) {
+    }
 
     /** 设置头部返回键按钮点击事件 */
     fun setHeaderBackClick(event: () -> Unit) {
@@ -59,6 +63,7 @@ abstract class TitleListActivity : ComMvRxAvtivity<ActivityTitleListBinding>() {
 
     /** 初始化头部信息 */
     private fun initHeader() {
+        binding.titleBar.titleTv.text = "返回"
         setHeaderBackClick { finish() }
         binding.refreshLayout.setEnableRefresh(true)
         binding.refreshLayout.setEnableLoadMore(false)

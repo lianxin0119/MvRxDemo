@@ -13,7 +13,9 @@ import space.lianxin.comm.extention.orZero
 
 /**
  * ===========================================
- * model的基类
+ * model的基类。在使用[@EpoxyModelClass]注解的时候指定的layout布局名称，应当具有唯一性。
+ * 否者布局所在的module被当做library库时，相同命名的布局文件会覆盖当前layout。出现layout错误。
+ * 此外，对应的layout布局也应当指定[viewBindingIgnore="true"]
  *
  * @author: lianxin
  * @date: 2021/2/28 10:50

@@ -1,8 +1,9 @@
 <resources>
 
-    <string name="comName">MvRxDemo</string>
-    <string name="loadHint">正在加载…</string>
+    <string name="comm_Name">MvRxDemo</string>
+    <string name="comm_loadHint">正在加载…</string>
 
-    <string name="noMoreTips">没有更多了~</string>
+    <string name="comm_noMoreTips">没有更多了~</string>
+    <string name="comm_loadMoreTips">数据加载中~</string>
 
 </resources>

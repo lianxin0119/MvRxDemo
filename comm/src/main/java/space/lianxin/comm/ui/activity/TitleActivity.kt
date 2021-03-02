@@ -1,6 +1,6 @@
 package space.lianxin.comm.ui.activity
 
-import space.lianxin.comm.databinding.ActivityTitleBinding
+import space.lianxin.comm.databinding.CommActivityTitleBinding
 
 /**
  * ===========================================
@@ -10,8 +10,8 @@ import space.lianxin.comm.databinding.ActivityTitleBinding
  * @date: 2021/2/19 12:39
  * ===========================================
  */
-abstract class TitleActivity : ComMvRxAvtivity<ActivityTitleBinding>() {
+abstract class TitleActivity : ComMvRxAvtivity<CommActivityTitleBinding>() {
 
-    override fun inflateBinding() = ActivityTitleBinding.inflate(layoutInflater)
+    override fun inflateBinding() = CommActivityTitleBinding.inflate(layoutInflater)
 
 }

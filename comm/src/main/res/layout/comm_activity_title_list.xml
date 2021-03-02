@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/titleBar"
-        layout="@layout/layout_title" />
+        layout="@layout/comm_layout_title" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
@@ -19,6 +19,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
             android:paddingBottom="32dp" />
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

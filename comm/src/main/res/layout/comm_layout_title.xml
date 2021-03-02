@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/titleBarHeight"
-    android:paddingHorizontal="@dimen/defaultHorMargin">
+    android:layout_height="@dimen/comm_titleBarHeight"
+    android:paddingHorizontal="@dimen/comm_smallHorMargin">
 
     <ImageView
         android:id="@+id/backIv"
@@ -22,7 +22,6 @@
         android:id="@+id/titleTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -33,7 +32,7 @@
         app:layout_constraintEnd_toStartOf="@id/rightIv"
         app:layout_constraintStart_toEndOf="@id/backIv"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/comName" />
+        tools:text="@string/comm_Name" />
 
     <ImageView
         android:id="@+id/rightIv"
@@ -63,7 +62,7 @@
         app:layout_constraintStart_toEndOf="@id/rightIv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginStart="0dp"
-        tools:text="@string/comName"
+        tools:text="@string/comm_Name"
         tools:visibility="visible" />
 
     <TextView
@@ -80,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/comName"
+        tools:text="@string/comm_Name"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

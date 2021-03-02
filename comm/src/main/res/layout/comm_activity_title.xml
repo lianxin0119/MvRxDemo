@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/titleBar"
-        layout="@layout/layout_title" />
+        layout="@layout/comm_layout_title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

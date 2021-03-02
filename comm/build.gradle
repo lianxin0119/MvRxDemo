@@ -37,6 +37,7 @@ android {
         viewBinding = true
     }
 
+    resourcePrefix "comm_"
 }
 
 dependencies {

@@ -26,7 +26,7 @@ class LoadingDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         setStyle()
-        return inflater.inflate(R.layout.dialog_loading, container, false)
+        return inflater.inflate(R.layout.comm_dialog_loading, container, false)
     }
 
     /**

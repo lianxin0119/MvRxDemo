@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
-import kotlinx.android.synthetic.main.mvrx_item_nomore.view.*
+import kotlinx.android.synthetic.main.comm_mvrx_item_nomore.view.*
 import space.lianxin.comm.R
 import space.lianxin.comm.ui.mvrx.base.BaseEpoxyHolder
 import space.lianxin.comm.ui.mvrx.base.BaseEpoxyModel
@@ -20,6 +20,8 @@ import space.lianxin.comm.ui.mvrx.base.BaseEpoxyModel
 @EpoxyModelClass
 abstract class NoMoreItem : BaseEpoxyModel<BaseEpoxyHolder>() {
 
+    override fun getDefaultLayout() = R.layout.comm_mvrx_item_nomore
+
     /** 提示的文字，没有设置时。默认提示为："没有更多了~" */
     @EpoxyAttribute
     var tipsText: CharSequence? = null
@@ -29,12 +31,12 @@ abstract class NoMoreItem : BaseEpoxyModel<BaseEpoxyHolder>() {
     var textStyle: (TextView.() -> Unit)? = null
 
     override fun onBind(itemView: View) {
-        itemView.noMoreTv.text = tipsText
+        tipsText?.let {
+            itemView.noMoreTv.text = it
+        }
         textStyle?.let {
             itemView.noMoreTv.apply(it)
         }
     }
-
-    override fun getDefaultLayout() = R.layout.mvrx_item_nomore
 
 }

@@ -32,7 +32,7 @@ class ActionLoadingDialog : BaseFragmentDialog() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.dialog_loading_action, container, false)
+        val view = inflater.inflate(R.layout.comm_dialog_loading_action, container, false)
         loadingTv = view.findViewById(R.id.loadingTv)
         loadingTv?.showTextNotNull(tips)
         return view

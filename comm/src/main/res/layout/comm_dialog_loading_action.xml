@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/loadHint"
+            android:text="@string/comm_loadHint"
             android:textColor="#ffffffff"
             android:textSize="12sp"
             android:visibility="gone"

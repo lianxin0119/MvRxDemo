@@ -1,10 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="InOrMmUsage">
 
     <!--  标题栏高度，系统默认值  -->
-    <dimen name="titleBarHeight">48dp</dimen>
+    <dimen name="comm_titleBarHeight">40dp</dimen>
 
     <!--  默认的左右边距距离  -->
-    <dimen name="defaultHorMargin">16dp</dimen>
-    <dimen name="defaultVerMargin">12dp</dimen>
+    <dimen name="comm_defaultHorMargin">16dp</dimen>
+    <dimen name="comm_defaultVerMargin">12dp</dimen>
+    <dimen name="comm_smallHorMargin">12dp</dimen>
+    <dimen name="comm_smallVerMargin">8dp</dimen>
+
+    <!--  常用dp  -->
+    <dimen name="comm_24dp">24dp</dimen>
+    <dimen name="comm_20dp">20dp</dimen>
+    <dimen name="comm_16dp">16dp</dimen>
+    <dimen name="comm_12dp">12dp</dimen>
+    <dimen name="comm_10dp">10dp</dimen>
+    <dimen name="comm_8dp">8dp</dimen>
+    <dimen name="comm_6dp">6dp</dimen>
+    <dimen name="comm_4dp">4dp</dimen>
+    <dimen name="comm_3dp">3dp</dimen>
+    <dimen name="comm_2dp">2dp</dimen>
+    <dimen name="comm_1dp">1dp</dimen>
 
 </resources>
