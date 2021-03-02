@@ -10,7 +10,7 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieView"
-        android:background="@drawable/shape_slide_corners_8dp"
+        android:background="@drawable/comm_shape_slide_corners_8dp"
         android:backgroundTint="#11330000"
         android:layout_width="80dp"
         android:layout_height="80dp"

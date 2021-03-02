@@ -27,9 +27,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "SERVER_HOST", "\"dev.cninct.com\"" // 测试服服务器地址
+            buildConfigField "String", "ROUTE", "\"PMAI_DEV\""
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SERVER_HOST", "\"build.cninct.com\"" // 正式服服务器地址
+            buildConfigField "String", "ROUTE", "\"PMAI\""
         }
     }
 
