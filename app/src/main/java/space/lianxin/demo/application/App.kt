@@ -16,11 +16,12 @@ import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 import space.lianxin.base.app.BaseApplication
 import space.lianxin.base.di.ClientModule
+import space.lianxin.comm.repository.oauthRepositoryModel
+import space.lianxin.comm.repository.userRepositoryModel
 import space.lianxin.comm.utils.AppBackgroundManager
 import space.lianxin.comm.widget.refresh.BlackManHeader
 import space.lianxin.demo.BuildConfig
 import space.lianxin.demo.R
-import space.lianxin.demo.repository.userRepositoryModel
 import java.io.IOException
 import java.net.SocketException
 
@@ -118,6 +119,7 @@ class App : BaseApplication() {
 
         // 在这里添加一些全局的注入
         builder.import(userRepositoryModel) // 用户相关的
+        builder.import(oauthRepositoryModel) // 登录授权相关
     }
 
     /** 初始化调试工具哆啦A梦 */

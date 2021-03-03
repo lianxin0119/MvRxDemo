@@ -1,8 +1,7 @@
-package space.lianxin.demo.repository.datasource.remote
+package space.lianxin.comm.repository.datasource.remote
 
-import io.reactivex.Observable
 import space.lianxin.base.repository.BaseRemoteDataSource
-import space.lianxin.demo.repository.api.UserApi
+import space.lianxin.comm.repository.api.UserApi
 
 /**
  * ===========================================
@@ -15,10 +14,6 @@ import space.lianxin.demo.repository.api.UserApi
 class UserRemoteDataSource : BaseRemoteDataSource() {
 
     private val userApi: UserApi = retrofitService(UserApi::class.java)
-
-    fun login(): Observable<Boolean> {
-        return userApi.login()
-    }
 
 
 }
