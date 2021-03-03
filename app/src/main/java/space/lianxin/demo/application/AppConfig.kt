@@ -6,6 +6,7 @@ import space.lianxin.base.app.AppLifecycle
 import space.lianxin.base.di.GlobeConfigModule
 import space.lianxin.base.integration.ConfigModule
 import space.lianxin.base.integration.IRepositoryManager
+import space.lianxin.demo.repository.api.UserApi
 
 /**
  * ===========================================
@@ -33,5 +34,8 @@ class AppConfig : ConfigModule {
     }
 
     override fun registerComponents(context: Context, repositoryManager: IRepositoryManager) {
+        repositoryManager.injectRetrofitService(
+            UserApi::class.java
+        )
     }
 }

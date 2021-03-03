@@ -20,6 +20,7 @@ import space.lianxin.comm.utils.AppBackgroundManager
 import space.lianxin.comm.widget.refresh.BlackManHeader
 import space.lianxin.demo.BuildConfig
 import space.lianxin.demo.R
+import space.lianxin.demo.repository.userRepositoryModel
 import java.io.IOException
 import java.net.SocketException
 
@@ -116,6 +117,7 @@ class App : BaseApplication() {
         // 注入数据库
 
         // 在这里添加一些全局的注入
+        builder.import(userRepositoryModel) // 用户相关的
     }
 
     /** 初始化调试工具哆啦A梦 */
