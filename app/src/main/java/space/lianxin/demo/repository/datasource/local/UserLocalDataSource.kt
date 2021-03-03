@@ -12,4 +12,8 @@ import space.lianxin.base.repository.BaseLocalDataSource
  */
 class UserLocalDataSource : BaseLocalDataSource() {
 
+    fun saveUserData() {
+
+    }
+
 }

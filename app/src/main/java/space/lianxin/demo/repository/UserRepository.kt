@@ -26,6 +26,10 @@ class UserRepository(
     fun login(): Observable<Boolean> {
         return userRemoteDataSource
             .login()
+            .map {
+                userLocalDataSource.saveUserData()
+                it
+            }
     }
 
 
