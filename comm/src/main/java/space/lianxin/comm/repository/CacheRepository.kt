@@ -17,8 +17,7 @@ object CacheRepository {
         return MMKV.defaultMMKV()
     }
 
-    /** 获取用户的MMKV
-     */
+    /** 获取用户的MMKV */
     fun getUserMMKV(): MMKV {
         return MMKV.mmkvWithID(OauthRepository.getUserId().toString())
     }
