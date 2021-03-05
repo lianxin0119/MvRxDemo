@@ -28,9 +28,10 @@ class LoginViweModel(
     private val oauthRepo by App.INSTANCE.kodein.instance<OauthRepository>()
 
     fun login() {
-        oauthRepo.phoneLogin().execute {
-            copy(loginRequest = it)
-        }
+        // 网络模块没有配置完善，暂时注释掉。
+//        oauthRepo.phoneLogin().execute {
+//            copy(loginRequest = it)
+//        }
     }
 
 }

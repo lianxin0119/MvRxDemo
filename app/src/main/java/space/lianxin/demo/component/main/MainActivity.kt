@@ -16,7 +16,13 @@ class MainActivity : TitleListActivity() {
     override fun initView() {
         super.initView()
         epoxyController.setFilterDuplicates(true)
+        subscribeVM(viewModel)
         attachToItemScroll()
+    }
+
+    override fun initData() {
+        super.initData()
+        viewModel.login()
     }
 
     override fun buildEpoxyController() = simpleController(viewModel) { state ->
