@@ -10,36 +10,35 @@ package space.lianxin.comm.utils.api
  */
 object ErrorCode {
 
+    // state 错误
+    const val OK = 0 // 正常
+    const val ApiHasNot = -2 // 接口不存在
+    const val UnKnown = -1 // 未知错误
+    const val Error = 1 // 错误
+    const val ErrorParamar = 2 // 参数错误
+    const val NoServer = 4 // 无数据服务
+    const val UnLogin = 5 // 未登录
+    const val UnRegister = 7 // 未注册
+
+    // code码错误
     const val Success = 200 // 成功返回数据
+    const val ServiceError = 500 // 服务器发生错误
     const val PageNotFound = 404 // 页面不存在
-    const val TokenExpired = 317 // token过期
+    const val RequestRefuse = 405 // 请求被拒绝
+    const val RequestSerRefuse = 403 // 请求被服务器拒绝
+    const val Redirect = 307 // 请求被重定向到其他页面
+    const val ServiceExc = 502 // 服务器异常
 
 }
 
 /** 服务器返回异常的类型相关判断工具类 */
 object ErrorCodeUtils {
 
-    private val ggCodeList = listOf(
-        504, //获取缓存锁异常
-        503, //服务端HTTP请求错误
-        502, //json反序列化失败
-        501, //json序列化失败
-        500, //服务器异常
-        335, //分布式锁处理中
-        321, //数据异常
-        319, //内容解析失败
-        301 //请求冲突或数据库唯一冲突
-    )
-
     /** 不需要吐司服务器message的code码集合。 */
     private val dontShowMsgList = listOf(
-        ErrorCode.TokenExpired
+        ErrorCode.UnRegister,
+        ErrorCode.UnLogin
     )
-
-    /** 异常是否属于提示“啊哦，服务器抽搐了，请稍后重试~” */
-    fun isShowSeverGG(errorCode: Int): Boolean {
-        return ggCodeList.contains(errorCode)
-    }
 
     /** 是否需要展示服务端提示的msg */
     fun isNeedShowMsg(errorCode: Int): Boolean {

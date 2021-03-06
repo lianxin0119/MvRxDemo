@@ -8,7 +8,8 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import space.lianxin.base.repository.BaseRepositoryRemote
-import space.lianxin.comm.repository.bean.LoginResultBean
+import space.lianxin.comm.repository.bean.request.LoginBean
+import space.lianxin.comm.repository.bean.result.LoginResultBean
 import space.lianxin.comm.repository.datasource.remote.OauthRemoteDataSource
 import space.lianxin.comm.utils.api.exception.ApiException
 
@@ -28,7 +29,7 @@ class OauthRepository(
     companion object {
 
         private const val KEY_CACHE_OAUTHBEAN = "key_cache_oauthbean"
-        private var userId: Long = 0L
+        private var userId: Long? = null
         private var tempLoginResultBean: LoginResultBean? = null
 
         /** 初始化缓存数据 */
@@ -50,7 +51,7 @@ class OauthRepository(
 
         /** 清除缓存数据 */
         fun clearCache() {
-            userId = 0L
+            userId = null
             CacheRepository.getCommMMKV().removeValueForKey(KEY_CACHE_OAUTHBEAN)
         }
 
@@ -62,17 +63,17 @@ class OauthRepository(
             }
         }
 
-        fun getUserId(): Long = userId
+        fun getUserId(): Long? = userId
 
         /** 是否已经登录 */
         fun isLogin(): Boolean {
-            return userId != 0L
+            return userId != null
         }
     }
 
-    fun phoneLogin(): Observable<LoginResultBean> {
+    fun phoneLogin(bean: LoginBean): Observable<LoginResultBean> {
         clearCache()
-        return dataSource.phoneLogin()
+        return dataSource.phoneLogin(bean)
             .map {
                 LogUtils.d("login success result = ${GsonUtils.toJson(it)}")
                 initData(it)
@@ -85,7 +86,6 @@ class OauthRepository(
                 }
             }
     }
-
 
 }
 

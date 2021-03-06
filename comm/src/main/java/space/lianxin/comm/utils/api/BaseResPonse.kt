@@ -9,12 +9,7 @@ package space.lianxin.comm.utils.api
  * ===========================================
  */
 data class BaseResponse<out T>(
-    /** 正常接口使用的状态码 */
-    val code: Int,
-    /** 异常接口使用的状态码 */
-    val status: Int,
-    /** code异常对应的信息提示 */
+    val state: Int,
     val message: String,
-    /** 正常返回的数据信息 */
-    val data: T
+    val ext: T
 )

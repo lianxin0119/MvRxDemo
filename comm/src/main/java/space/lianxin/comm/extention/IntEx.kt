@@ -23,3 +23,7 @@ fun Int?.orZero(): Int {
 infix fun Int?.ifNullTo(i: Int): Int {
     return this ?: i
 }
+
+infix fun Int?.ifNullOrZeroTo(i: Int): Int {
+    return if (this == null || this == 0) i else this
+}

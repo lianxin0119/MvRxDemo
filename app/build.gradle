@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.didi.dokit'
 
 android {
     compileSdkVersion 29
@@ -42,6 +43,35 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dokitExt {
+    // 通用设置
+    comm {
+        gpsSwitch true // 地图经纬度开关
+        networkSwitch true // 网络开关
+        bigImgSwitch true // 大图开关
+        webViewSwitch true // webView js 抓包
+    }
+
+    slowMethod {
+        // 调用栈模式配置
+        stackMethod {
+            thresholdTime 10 // 默认值为 5ms 小于该值的函数在调用栈中不显示
+            enterMethods = ["com.didichuxing.doraemondemo.MainDebugActivity.test1"] // 调用栈函数入口
+            methodBlacklist = ["com.facebook.drawee.backends.pipeline.Fresco"] // 黑名单 粒度最小到类 暂不支持到方法
+        }
+        // 普通模式配置
+        normalMethod {
+            thresholdTime 500 // 默认值为 500ms 小于该值的函数在运行时不会在控制台中被打印
+            packageNames = ["com.didichuxing.doraemondemo"] // 需要针对函数插装的包名
+            methodBlacklist = ["com.didichuxing.doraemondemo.dokit"] // 不需要针对函数插装的包名&类名
+        }
+    }
 }
 
 dependencies {
@@ -59,8 +89,12 @@ dependencies {
     kapt 'com.airbnb.android:epoxy-processor:3.8.0'
 
     // 哆啦A梦调试工具
-    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.0.2'
-    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.0.2'
+    debugImplementation('com.didichuxing.doraemonkit:dokitx:3.3.5') {
+        exclude group: 'com.blankj'
+    }
+    releaseImplementation('com.didichuxing.doraemonkit:dokitx-no-op:3.3.5') {
+        exclude group: 'com.blankj'
+    }
 
     // ARouter
     implementation 'com.alibaba:arouter-api:1.5.0'

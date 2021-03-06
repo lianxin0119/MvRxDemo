@@ -3,7 +3,8 @@ package space.lianxin.comm.repository.datasource.remote
 import io.reactivex.Observable
 import space.lianxin.base.repository.BaseRemoteDataSource
 import space.lianxin.comm.repository.api.OauthApi
-import space.lianxin.comm.repository.bean.LoginResultBean
+import space.lianxin.comm.repository.bean.request.LoginBean
+import space.lianxin.comm.repository.bean.result.LoginResultBean
 import space.lianxin.comm.utils.api.handle.RxGlobalHandleUtil
 
 /**
@@ -18,8 +19,8 @@ class OauthRemoteDataSource : BaseRemoteDataSource() {
 
     private val oauthApi: OauthApi = retrofitService(OauthApi::class.java)
 
-    fun phoneLogin(): Observable<LoginResultBean> {
-        return oauthApi.phoneLogin()
+    fun phoneLogin(bean: LoginBean): Observable<LoginResultBean> {
+        return oauthApi.phoneLogin(bean)
             .compose(RxGlobalHandleUtil.globalHandle())
     }
 

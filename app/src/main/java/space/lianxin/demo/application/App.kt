@@ -16,6 +16,7 @@ import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 import space.lianxin.base.app.BaseApplication
 import space.lianxin.base.di.ClientModule
+import space.lianxin.comm.repository.OauthRepository
 import space.lianxin.comm.repository.oauthRepositoryModel
 import space.lianxin.comm.repository.userRepositoryModel
 import space.lianxin.comm.utils.AppBackgroundManager
@@ -130,7 +131,9 @@ class App : BaseApplication() {
     }
 
     /** 初始化缓存数据 */
-    private fun initCacheData() {}
+    private fun initCacheData() {
+        OauthRepository.init()
+    }
 
     /**
      * App前后台切换的管理

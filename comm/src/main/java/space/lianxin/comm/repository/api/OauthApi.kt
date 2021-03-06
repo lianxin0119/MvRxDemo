@@ -1,8 +1,11 @@
 package space.lianxin.comm.repository.api
 
 import io.reactivex.Observable
+import retrofit2.http.Body
 import retrofit2.http.POST
-import space.lianxin.comm.repository.bean.LoginResultBean
+import space.lianxin.comm.BuildConfig
+import space.lianxin.comm.repository.bean.request.LoginBean
+import space.lianxin.comm.repository.bean.result.LoginResultBean
 import space.lianxin.comm.utils.api.BaseResponse
 
 /**
@@ -16,7 +19,7 @@ import space.lianxin.comm.utils.api.BaseResponse
 internal interface OauthApi {
 
     /** 使用手机号登录 */
-    @POST()
-    fun phoneLogin(): Observable<BaseResponse<LoginResultBean>>
+    @POST("${BuildConfig.ROUTE}?op=Login")
+    fun phoneLogin(@Body body: LoginBean): Observable<BaseResponse<LoginResultBean>>
 
 }

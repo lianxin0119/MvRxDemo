@@ -14,7 +14,7 @@ import space.lianxin.comm.utils.api.BaseResponse
  * ===========================================
  */
 class GlobalHandleTransformer<T> constructor(
-    private val globalOnNextInterceptor: (BaseResponse<T>) -> Observable<T> = { Observable.just(it.data) },
+    private val globalOnNextInterceptor: (BaseResponse<T>) -> Observable<T> = { Observable.just(it.ext) },
     private val globalOnErrorResume: (Throwable) -> Observable<T> = { Observable.error(it) },
     private val retryConfigProvider: (Throwable) -> RetryConfig = { RetryConfig() },
     private val upStreamSchedulerProvider: () -> Scheduler = { AndroidSchedulers.mainThread() },

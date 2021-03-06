@@ -1,4 +1,4 @@
-package space.lianxin.comm.repository.bean
+package space.lianxin.comm.repository.bean.result
 
 /**
  * ===========================================

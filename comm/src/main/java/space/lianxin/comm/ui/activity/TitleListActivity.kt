@@ -74,4 +74,9 @@ abstract class TitleListActivity : ComMvRxAvtivity<CommActivityTitleListBinding>
         EpoxyVisibilityTracker().attach(binding.recyclerView)
     }
 
+    protected fun setTitle(title: String) {
+        binding.titleBar.titleTv.text = title
+        binding.titleBar.centerTitleTxtView.text = title
+    }
+
 }

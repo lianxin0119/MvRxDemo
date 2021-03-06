@@ -14,17 +14,8 @@ object ApiErrorMessageHelper {
 
     /** 根据errorCode，显示相应的信息 */
     fun showToastMessage(errorCode: Int, serviceMessage: String?) {
-        when (errorCode) {
-            ErrorCode.PageNotFound -> "页面不存在"
-            else -> {
-                if (ErrorCodeUtils.isShowSeverGG(errorCode)) {
-                    "服务器GG了，稍后重试。"
-                } else {
-                    serviceMessage
-                }
-            }
-        }?.let {
-            if (ErrorCodeUtils.isNeedShowMsg(errorCode)) {
+        if (ErrorCodeUtils.isNeedShowMsg(errorCode)) {
+            serviceMessage?.let {
                 val disposable = Observable.just(it)
                     .compose(SchedulersUtil.applySchedulers())
                     .subscribe({ msg ->

@@ -20,11 +20,6 @@ class MainActivity : TitleListActivity() {
         attachToItemScroll()
     }
 
-    override fun initData() {
-        super.initData()
-        viewModel.login()
-    }
-
     override fun buildEpoxyController() = simpleController(viewModel) { state ->
         if (state.loginRequest is Loading) {
             return@simpleController
