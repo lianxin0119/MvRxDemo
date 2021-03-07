@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="space.lianxin.demo.component.main.MainActivity" />
+        <activity android:name="space.lianxin.demo.component.main.ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+
+        </activity>
 
         <activity android:name=".component.login.ui.LoginActivity">
             <intent-filter>

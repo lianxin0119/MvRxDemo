@@ -21,6 +21,7 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="itemLineBgColor">#FFEBEBEB</color>
-
+    <!--  关键字高亮颜色  -->
+    <color name="keyLightColor">#FF30D18B</color>
 
 </resources>

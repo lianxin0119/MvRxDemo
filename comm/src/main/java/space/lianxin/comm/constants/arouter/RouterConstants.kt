@@ -10,6 +10,14 @@ package space.lianxin.comm.constants.arouter
  */
 object RouterConstants {
 
+    object App {
+        private const val Group = "/App/"
+
+        const val MainActivity = "${Group}MainActivity"
+        const val LoginActivity = "${Group}LoginActivity"
+    }
+
+
     /** OA模块 */
     object Oa {
         private const val Group = "/Oa/"
@@ -21,7 +29,7 @@ object RouterConstants {
     object Ring {
         private const val Group = "/Ring/"
 
-        const val MainActivity = "${Group}OaMainActivity"
+        const val MainActivity = "${Group}RingMainActivity"
     }
 
 

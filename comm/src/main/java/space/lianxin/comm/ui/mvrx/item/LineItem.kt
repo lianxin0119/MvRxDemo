@@ -17,10 +17,10 @@ import space.lianxin.comm.ui.mvrx.base.BaseEpoxyModel
 @EpoxyModelClass
 abstract class LineItem : BaseEpoxyModel<BaseEpoxyHolder>() {
 
+    override fun getDefaultLayout() = R.layout.comm_mvrx_item_line
+
     @EpoxyAttribute
     var heightPx: Int? = null
-
-    override fun getDefaultLayout() = R.layout.comm_mvrx_item_line
 
     init {
         heightPx = 1

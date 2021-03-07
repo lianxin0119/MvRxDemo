@@ -2,8 +2,11 @@ package space.lianxin.demo.component.login.ui
 
 import android.text.Editable
 import com.airbnb.mvrx.UniqueOnly
+import com.alibaba.android.arouter.facade.annotation.Route
 import space.lianxin.base.extention.click
 import space.lianxin.base.extention.gone
+import space.lianxin.comm.constants.arouter.RouterConstants
+import space.lianxin.comm.constants.arouter.RouterStart
 import space.lianxin.comm.ui.activity.TitleActivity
 import space.lianxin.demo.component.login.viewmodel.LoginState
 import space.lianxin.demo.component.login.viewmodel.LoginViweModel
@@ -17,6 +20,7 @@ import space.lianxin.demo.databinding.ActivityLoginBinding
  * @date: 2021/3/6 13:39
  * ===========================================
  */
+@Route(path = RouterConstants.App.LoginActivity)
 class LoginActivity : TitleActivity<ActivityLoginBinding>() {
 
     override fun initContentBinding() = ActivityLoginBinding.inflate(layoutInflater)
@@ -28,6 +32,8 @@ class LoginActivity : TitleActivity<ActivityLoginBinding>() {
             LoginState::loginRequest,
             deliveryMode = UniqueOnly(mvrxViewId),
             onFail = {
+                // 网络配置有问题，所以在这里跳转。
+                RouterStart.App.startMainActivity("从Login来")
                 cBinding.result.text = it.message
             },
             onSuccess = {
