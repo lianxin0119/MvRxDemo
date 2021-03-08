@@ -22,14 +22,15 @@ import space.lianxin.comm.utils.api.exception.ApiException
  * ===========================================
  */
 class OauthRepository(
-    private val dataSource: OauthRemoteDataSource,
+    remote: OauthRemoteDataSource,
     private val userRepo: UserRepository
-) : BaseRepositoryRemote<OauthRemoteDataSource>(dataSource) {
+) : BaseRepositoryRemote<OauthRemoteDataSource>(remote) {
 
     companion object {
 
         private const val KEY_CACHE_OAUTHBEAN = "key_cache_oauthbean"
-        private var userId: Long? = null
+        private var userId: Int? = null
+        private var userIdToken: String? = null
         private var tempLoginResultBean: LoginResultBean? = null
 
         /** 初始化缓存数据 */
@@ -46,7 +47,8 @@ class OauthRepository(
         }
 
         private fun initData(bean: LoginResultBean) {
-            userId = bean.uid
+            userId = bean.account_id
+            userIdToken = bean.userid
         }
 
         /** 清除缓存数据 */
@@ -63,7 +65,8 @@ class OauthRepository(
             }
         }
 
-        fun getUserId(): Long? = userId
+        fun getUserId(): Int? = userId
+        internal fun getUserIdToken(): String? = userIdToken
 
         /** 是否已经登录 */
         fun isLogin(): Boolean {
@@ -73,12 +76,14 @@ class OauthRepository(
 
     fun phoneLogin(bean: LoginBean): Observable<LoginResultBean> {
         clearCache()
-        return dataSource.phoneLogin(bean)
+        return remoteDataSource.phoneLogin(bean)
             .map {
+                val data = it.result.first()
+                tempLoginResultBean = data
                 LogUtils.d("login success result = ${GsonUtils.toJson(it)}")
-                initData(it)
+                initData(data)
                 cacheLoginResultBean()
-                it
+                data
             }
             .doOnError {
                 if (it is ApiException) {

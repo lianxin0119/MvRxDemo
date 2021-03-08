@@ -29,7 +29,7 @@ class GlobalHttpHandlerImpl(private var context: Context) : GlobeHttpHandler {
 
     override fun onHttpRequestBefore(chain: Interceptor.Chain, request: Request): Request {
         val url = chain.request().url() // 请求地址
-        val userId = OauthRepository.getUserId()?.toString().orEmpty() // 用户标识
+        val userId = OauthRepository.getUserIdToken().orEmpty() // 用户标识
         val devUUID = DeviceUtil.getDeviceUUID(context)
         val token =
             "userid=${userId}&platform=${Constans.PLATFORM}&dev=${devUUID}&token=3872e85d-0206-40f0-ac8d-35bbd6d59712"

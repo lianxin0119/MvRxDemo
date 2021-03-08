@@ -83,4 +83,8 @@ abstract class TitleListActivity : ComMvRxAvtivity<CommActivityTitleListBinding>
         binding.titleBar.centerTitleTxtView.text = title
     }
 
+    protected open fun finishRefresh() {
+        binding.refreshLayout.finishRefresh()
+    }
+
 }

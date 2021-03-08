@@ -6,6 +6,7 @@ import retrofit2.http.POST
 import space.lianxin.comm.BuildConfig
 import space.lianxin.comm.repository.bean.request.LoginBean
 import space.lianxin.comm.repository.bean.result.LoginResultBean
+import space.lianxin.comm.utils.api.BaseNetList
 import space.lianxin.comm.utils.api.BaseResponse
 
 /**
@@ -20,6 +21,6 @@ internal interface OauthApi {
 
     /** 使用手机号登录 */
     @POST("${BuildConfig.ROUTE}?op=Login")
-    fun phoneLogin(@Body body: LoginBean): Observable<BaseResponse<LoginResultBean>>
+    fun phoneLogin(@Body body: LoginBean): Observable<BaseResponse<BaseNetList<LoginResultBean>>>
 
 }

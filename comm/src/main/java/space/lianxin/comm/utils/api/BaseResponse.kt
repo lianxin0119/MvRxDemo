@@ -13,3 +13,11 @@ data class BaseResponse<out T>(
     val message: String,
     val ext: T
 )
+
+data class BaseNetList<T>(
+    val total_count: Int,
+    val total_pages: Int,
+    val page: Int,
+    val page_size: Int,
+    val result: List<T>
+)

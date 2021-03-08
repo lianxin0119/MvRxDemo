@@ -4,7 +4,9 @@ import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
+import space.lianxin.base.repository.BaseRepository
 import space.lianxin.base.repository.BaseRepositoryRemote
+import space.lianxin.comm.repository.datasource.local.UserLocalDataSource
 import space.lianxin.comm.repository.datasource.remote.UserRemoteDataSource
 
 /**
@@ -16,8 +18,9 @@ import space.lianxin.comm.repository.datasource.remote.UserRemoteDataSource
  * ===========================================
  */
 class UserRepository(
-    private val userRemoteDataSource: UserRemoteDataSource
-) : BaseRepositoryRemote<UserRemoteDataSource>(userRemoteDataSource) {
+    remote: UserRemoteDataSource,
+    local: UserLocalDataSource
+) : BaseRepository<UserRemoteDataSource, UserLocalDataSource>(remote, local) {
 
 }
 
@@ -25,5 +28,6 @@ class UserRepository(
 const val TAG_KODEIN_MODULE_REPOSITORY_CIRCLE = "userRepositoryModel"
 val userRepositoryModel = Kodein.Module(TAG_KODEIN_MODULE_REPOSITORY_CIRCLE) {
     bind<UserRemoteDataSource>() with singleton { UserRemoteDataSource() }
-    bind<UserRepository>() with singleton { UserRepository(instance()) }
+    bind<UserLocalDataSource>() with singleton { UserLocalDataSource() }
+    bind<UserRepository>() with singleton { UserRepository(instance(), instance()) }
 }

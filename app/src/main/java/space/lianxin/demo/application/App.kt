@@ -23,6 +23,7 @@ import space.lianxin.comm.utils.AppBackgroundManager
 import space.lianxin.comm.widget.refresh.BlackManHeader
 import space.lianxin.demo.BuildConfig
 import space.lianxin.demo.R
+import space.lianxin.ring.repostory.ringRepositoryModel
 import java.io.IOException
 import java.net.SocketException
 
@@ -121,6 +122,7 @@ class App : BaseApplication() {
         // 在这里添加一些全局的注入
         builder.import(userRepositoryModel) // 用户相关的
         builder.import(oauthRepositoryModel) // 登录授权相关
+        builder.import(ringRepositoryModel) // ring相关
     }
 
     /** 初始化调试工具哆啦A梦 */

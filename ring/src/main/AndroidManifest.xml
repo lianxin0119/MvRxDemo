@@ -3,7 +3,12 @@
     package="space.lianxin.ring">
 
     <application>
-        <activity android:name=".RingMainActivity" />
+        <activity android:name=".component.main.ui.RingMainActivity" />
+
+        <meta-data
+            android:name="space.lianxin.ring.config.ModuleConfig"
+            android:value="ConfigModule" />
+
     </application>
 
 </manifest>

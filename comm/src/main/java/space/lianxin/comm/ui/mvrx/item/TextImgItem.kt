@@ -47,9 +47,6 @@ abstract class TextImgItem : BaseEpoxyModel<BaseEpoxyHolder>() {
     @EpoxyAttribute
     var desc: CharSequence? = null
 
-    @EpoxyAttribute
-    var leftDesc: CharSequence? = null
-
     /** 高亮文字 */
     @EpoxyAttribute
     var highlightText: CharSequence? = null
@@ -70,9 +67,6 @@ abstract class TextImgItem : BaseEpoxyModel<BaseEpoxyHolder>() {
      */
     @EpoxyAttribute
     var descStyle: (TextView.() -> Unit)? = null
-
-    @EpoxyAttribute
-    var leftDescStyle: (TextView.() -> Unit)? = null
 
     /**
      * 默认大小 25dp 25dp marginStart 16dp
