@@ -32,12 +32,11 @@ class LoginActivity : TitleActivity<ActivityLoginBinding>() {
             LoginState::loginRequest,
             deliveryMode = UniqueOnly(mvrxViewId),
             onFail = {
-                // 网络配置有问题，所以在这里跳转。
-                RouterStart.App.startMainActivity("从Login来")
                 cBinding.result.text = it.message
             },
             onSuccess = {
                 cBinding.result.text = it.toString()
+                RouterStart.App.startMainActivity("从Login来")
             }
         )
     }

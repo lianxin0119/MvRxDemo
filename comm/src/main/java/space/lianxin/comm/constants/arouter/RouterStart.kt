@@ -1,6 +1,7 @@
 package space.lianxin.comm.constants.arouter
 
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.ActivityUtils
 import space.lianxin.comm.extention.putExtra
 
 /**
@@ -23,6 +24,12 @@ object RouterStart {
          * @param title 标题
          */
         fun startMainActivity(title: String) {
+            // 关闭欢迎和登录等页面。主页打开时保持只有一个activity。
+//            ActivityUtils.getActivityList().forEach {
+//                it.finish()
+//            }
+//            BaseApplication.INSTANCE.appManager.killAll()
+            // 在Activity内部实现。解决屏幕闪烁问题。
             ARouter.getInstance().build(RouterConstants.App.MainActivity)
                 .putExtra(RouterParam.App.Title, title)
                 .navigation()

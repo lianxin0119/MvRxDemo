@@ -5,15 +5,17 @@ import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.ActivityUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import space.lianxin.base.extention.click
 import space.lianxin.base.extention.visible
 import space.lianxin.base.ui.controller.simpleController
 import space.lianxin.comm.constants.arouter.RouterConstants
 import space.lianxin.comm.constants.arouter.RouterParam
-import space.lianxin.comm.repository.OauthRepository
-import space.lianxin.comm.repository.UserRepository
 import space.lianxin.comm.ui.activity.TitleListActivity
+import space.lianxin.comm.ui.mvrx.item.textImgItem
+import space.lianxin.comm.utils.NavigateUtil
+import space.lianxin.demo.R
 import space.lianxin.demo.component.main.viewmodel.MainViewModel
 
 @Route(path = RouterConstants.App.MainActivity)
@@ -42,10 +44,34 @@ class MainActivity : TitleListActivity() {
         viewModel.loadData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        ActivityUtils.finishOtherActivities(this::class.java, false)
+    }
+
     override fun onRefresh(refreshLayout: RefreshLayout) {
     }
 
     override fun buildEpoxyController() = simpleController(viewModel) { state ->
+        if (state.data.isNullOrBlank()) {
+            return@simpleController
+        }
+        textImgItem {
+            id("line1")
+            imgRes(R.mipmap.ic_launcher)
+            title("去Oa")
+            onClick {
+                NavigateUtil.navigation(RouterConstants.Oa.MainActivity)
+            }
+        }
+        textImgItem {
+            id("line2")
+            imgRes(R.mipmap.ic_launcher)
+            title("去Ring")
+            onClick {
+                NavigateUtil.navigation(RouterConstants.Ring.MainActivity)
+            }
+        }
 
     }
 
