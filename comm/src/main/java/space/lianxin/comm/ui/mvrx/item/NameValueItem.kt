@@ -33,10 +33,6 @@ abstract class NameValueItem : BaseEpoxyModel<BaseEpoxyHolder>() {
     @EpoxyAttribute
     var value: CharSequence? = null
 
-    /** 设置背景颜色值。 */
-    @EpoxyAttribute
-    var backgroundTint: Int? = null
-
     /** 名称DSL */
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var nameStyle: (TextView.() -> Unit)? = null
@@ -62,9 +58,6 @@ abstract class NameValueItem : BaseEpoxyModel<BaseEpoxyHolder>() {
         }
         valueStyle?.let {
             itemView.mvrxValue.apply(it)
-        }
-        backgroundTint?.let {
-            itemView.background.colorFilter = PorterDuffColorFilter(it, PorterDuff.Mode.DARKEN)
         }
         itemView.click {
             onClick?.invoke()

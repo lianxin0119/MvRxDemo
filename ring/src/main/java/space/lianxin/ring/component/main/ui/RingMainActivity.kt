@@ -10,16 +10,21 @@ import space.lianxin.comm.ui.mvrx.item.lineItem
 import space.lianxin.comm.ui.mvrx.item.loadMoreItem
 import space.lianxin.comm.ui.mvrx.item.noMoreItem
 import space.lianxin.comm.ui.mvrx.item.textImgItem
+import space.lianxin.comm.utils.NavigateUtil
 import space.lianxin.ring.component.main.viewmodel.RingMainState
 import space.lianxin.ring.component.main.viewmodel.RingMainViewModel
+import space.lianxin.ring.repostory.bean.request.RDeviceName
 
 @Route(path = RouterConstants.Ring.MainActivity)
 class RingMainActivity : TitleListActivity() {
 
+    private var body: RDeviceName = RDeviceName()
+
     private val viewModel by lazy { RingMainViewModel() }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        viewModel.refresh()
+        body = body.copy(page = 0)
+        viewModel.refresh(body)
     }
 
     override fun initView() {
@@ -36,24 +41,24 @@ class RingMainActivity : TitleListActivity() {
             if (it !is Loading) {
                 binding.refreshLayout
                 finishRefresh()
+                postInvalidate()
             }
         }
-        subscribeVM(viewModel)
-        viewModel.refresh()
+        viewModel.refresh(body)
     }
 
     override fun buildEpoxyController() = simpleController(viewModel) { state ->
-        if (state.request is Loading) {
-            return@simpleController
-        }
-        state.listData.forEach {
+        state.listData.forEachIndexed { index, it ->
             textImgItem {
-                id("deviceName_${it.approach_name}")
+                id("deviceName_$index")
                 title(it.approach_name)
                 showRightIc(true)
+                onClick {
+                    NavigateUtil.navigation(RouterConstants.Ring.RingDetailActivity)
+                }
             }
             lineItem {
-                id("line_${it.approach_name}")
+                id("line_$index")
                 rightMarginDp(12f)
                 leftMarginDp(12f)
             }
@@ -62,7 +67,8 @@ class RingMainActivity : TitleListActivity() {
             loadMoreItem {
                 id("loadmore")
                 onLoadMore {
-                    viewModel.loadMore()
+                    body = body.copy(page = body.page + 1)
+                    viewModel.loadMore(body)
                 }
             }
         } else {

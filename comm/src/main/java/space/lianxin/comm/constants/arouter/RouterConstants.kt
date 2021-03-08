@@ -30,6 +30,7 @@ object RouterConstants {
         private const val Group = "/Ring/"
 
         const val MainActivity = "${Group}RingMainActivity"
+        const val RingDetailActivity = "${Group}RingDetailActivity"
     }
 
 

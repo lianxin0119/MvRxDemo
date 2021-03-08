@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".component.main.ui.RingMainActivity" />
+        <activity android:name=".component.main.ui.RingDetailActivity" />
 
         <meta-data
             android:name="space.lianxin.ring.config.ModuleConfig"

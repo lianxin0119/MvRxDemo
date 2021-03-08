@@ -9,6 +9,6 @@ data class RDeviceName(
     val approach_states: String? = null,
     val approach_type: Int? = null,
     val organ_ids: String? = "1",
-    val page: Int? = 0,
+    val page: Int = 0,
     val page_size: Int? = 20
 )

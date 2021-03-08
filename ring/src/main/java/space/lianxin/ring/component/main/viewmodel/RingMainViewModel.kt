@@ -15,7 +15,6 @@ import space.lianxin.ring.repostory.bean.result.DeviceNameBean
 data class RingMainState(
     val listData: List<DeviceNameBean> = emptyList(),
     val request: Async<Any> = Uninitialized,
-    val body: RDeviceName = RDeviceName(),
     val hasMore: Boolean = false
 ) : MvRxState
 
@@ -31,32 +30,32 @@ class RingMainViewModel(
 
     private val ringRepo by BaseApplication.INSTANCE.kodein.instance<RingRepostory>()
 
-    fun refresh() {
+    fun refresh(body: RDeviceName) {
         withState { state ->
             if (state.request is Loading) {
                 return@withState
             }
-            ringRepo.queryDeviceNameList(state.body).execute {
+            ringRepo.queryDeviceNameList(body).execute {
                 if (it is Loading) {
                     copy(request = it)
                 } else {
-                    val hasMore = it()?.total_pages.orZero() > state.body.page.orZero()
+                    val hasMore = it()?.total_pages.orZero() > body.page.orZero()
                     copy(request = it, listData = it()?.result.orEmpty(), hasMore = hasMore)
                 }
             }
         }
     }
 
-    fun loadMore() {
+    fun loadMore(body: RDeviceName) {
         withState { state ->
             if (state.request is Loading) {
                 return@withState
             }
-            ringRepo.queryDeviceNameList(state.body).execute {
+            ringRepo.queryDeviceNameList(body).execute {
                 if (it is Loading) {
                     copy(request = it)
                 } else {
-                    val hasMore = it()?.total_pages.orZero() > state.body.page.orZero()
+                    val hasMore = it()?.total_pages.orZero() > body.page
                     copy(
                         request = it,
                         listData = state.listData + it()?.result.orEmpty(),
