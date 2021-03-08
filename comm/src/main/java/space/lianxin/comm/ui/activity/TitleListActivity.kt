@@ -7,6 +7,8 @@ import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyVisibilityTracker
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import space.lianxin.base.extention.click
 import space.lianxin.base.extention.setStatusColor
 import space.lianxin.comm.databinding.CommActivityTitleListBinding
@@ -20,7 +22,8 @@ import space.lianxin.comm.databinding.CommActivityTitleListBinding
  * @date: 2021/2/25 14:00
  * ===========================================
  */
-abstract class TitleListActivity : ComMvRxAvtivity<CommActivityTitleListBinding>() {
+abstract class TitleListActivity : ComMvRxAvtivity<CommActivityTitleListBinding>(),
+    OnRefreshListener {
 
     override fun inflateBinding() = CommActivityTitleListBinding.inflate(layoutInflater)
 
@@ -34,6 +37,7 @@ abstract class TitleListActivity : ComMvRxAvtivity<CommActivityTitleListBinding>
             binding.titleBar.rightIv,
             binding.titleBar.backIv
         )
+        binding.refreshLayout.setOnRefreshListener(this)
         initRecyclerView(binding.refreshLayout, binding.recyclerView)
         binding.recyclerView.setController(epoxyController)
     }

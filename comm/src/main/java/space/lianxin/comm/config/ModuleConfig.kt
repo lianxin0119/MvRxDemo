@@ -9,6 +9,7 @@ import space.lianxin.base.integration.IRepositoryManager
 import space.lianxin.comm.constants.ApiConstants
 import space.lianxin.comm.repository.api.OauthApi
 import space.lianxin.comm.repository.api.UserApi
+import space.lianxin.comm.utils.api.RequestIntercept
 import space.lianxin.comm.utils.api.handle.GlobalHttpHandlerImpl
 
 /**
@@ -21,7 +22,7 @@ class ModuleConfig : ConfigModule {
 
     override fun applyOptions(context: Context, builder: GlobeConfigModule.Builder) {
         builder.baseUrl(ApiConstants.Host.BASE_URL)
-        builder.globeHttpHandler(GlobalHttpHandlerImpl(context))
+        builder.addInterceptor(RequestIntercept(GlobalHttpHandlerImpl(context)))
     }
 
     override fun injectActivityLifecycle(
